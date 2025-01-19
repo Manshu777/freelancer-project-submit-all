@@ -1,0 +1,47 @@
+{
+    "Contact": "7056298363",
+    "Dob": "2002-11-11",
+    "Email": "ap2290731@gmail.com",
+    "Full_Name": "Ap",
+    "Password": null,
+    "User_Name": "dev.ap11",
+    "about": "vhbhvhvb d hf hj jkmdh J JXNCVJK kjdh f jvbb af dbs fuy vcjjnxsbhsC  F FJSb fhf hFYH HC BVJH BAHFG HCV BHBDV BHJ fbnbcvjn bJHBF VVBJDS",
+    "created_at": "2024-11-14T09:42:49.000000Z",
+    "education": [
+        {
+            "degree": "vsdfcvsvxcv",
+            "institution": "vsdvcxvv",
+            "year": "4353"
+        },
+        {
+            "degree": "vsdfcvsvxcvter",
+            "institution": "vsdvcxvvet",
+            "year": "4353"
+        }
+    ],
+    "gender": "Male",
+    "id": 12,
+    "image": "User_pictures/tUXg7ccAQs8UrVWa3WENuifrL9aHJjHuzC2i1p4K.png",
+    "projects": [
+        {
+            "description": "fsdfsdfs",
+            "link": "https://webpixels.s3.eu-central-1.amazonaws.com/img/products/qCuKwAQ259NcCuhzGTUtiVgWTQF1pCRYl99MLRQh.jpeg",
+            "linkType": "image",
+            "name": "svsfs"
+        },
+        {
+            "description": "asda",
+            "link": "https://cdn.dribbble.com/users/4224376/screenshots/15381012/media/1c23c1b15e2aee1402ef550187c63e0b.jpg?resize=400x0",
+            "linkType": "image",
+            "name": "czc"
+        }
+    ],
+    "role": "Freelancer",
+    "skills": [
+        {
+            "SkillName": "Html",
+            "description": "dh sdg gdgja f hd df b fg dh"
+        }
+    ],
+    "updated_at": "2024-11-15T14:35:22.000000Z"
+}
