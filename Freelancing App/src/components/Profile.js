@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   StyleSheet,
   Text,
@@ -14,6 +14,7 @@ import Bell from '../assets/images/Bell.png';
 import styles from '../styles/HomeStyle';
 import {useNavigation} from '@react-navigation/native';
 import {Images} from '../config/Appurl';
+import {UserContext} from '../components/context/UserContext';
 
 const notificationsData = [
   {id: '1', message: 'Your profile has been updated.'},
@@ -22,6 +23,7 @@ const notificationsData = [
 ];
 
 const Profile = userData => {
+  const {loginUser} = useContext(UserContext);
   const navigation = useNavigation();
 
   const handleEmailPress = () => {
@@ -38,26 +40,26 @@ const Profile = userData => {
         <TouchableOpacity
           style={styles.imageShadoweff}
           onPress={handleEmailPress}>
-          {/* <Image
-            source={{uri: `${Images}${userData?.userData[0]?.image}`}}
+          <Image
+            source={{uri: `${Images}${loginUser?.image}`}}
             style={styles.dp}
-          /> */}
+          />
         </TouchableOpacity>
         <View style={styles.UserDetails}>
           <Text style={styles.UserName}>
-            {/* {userData ? userData.userData[0].Full_Name : 'Guest User'} */}
+            {loginUser ? loginUser.Full_Name : 'Guest User'}
           </Text>
           <Text style={styles.UserLocation}>
-            {/* {userData ? userData.userData[0].location : 'Location not set'} */}
+            {loginUser ? loginUser.Email : 'Location not set'}
           </Text>
         </View>
       </View>
 
       <View style={styles.bellIconDes}>
-        <TouchableOpacity onPress={() => handleNotifications()}>
+        {/* <TouchableOpacity onPress={() => handleNotifications()}>
           <Image source={Bell} style={styles.BellIcon} />
           <View style={styles.NotiDot}></View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

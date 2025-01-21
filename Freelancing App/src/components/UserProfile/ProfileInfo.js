@@ -90,11 +90,11 @@ const ProfileInfo = () => {
             <Text style={styles.label}>Role: {userData?.role}</Text>
           </View>
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.editButton}
             onPress={() => setModalVisible(true)}>
             <Text style={styles.editText}>Edit</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         <Modal
@@ -108,30 +108,35 @@ const ProfileInfo = () => {
               value={FullName}
               onChangeText={setFullName}
               placeholder="Full Name"
+              placeholderTextColor="#808080"
             />
             <TextInput
               style={styles.input}
               value={email}
               onChangeText={setEmail}
               placeholder="Email"
+              placeholderTextColor="#808080"
             />
             <TextInput
               style={styles.input}
               value={Contact}
               onChangeText={setContact}
               placeholder="Contact Number"
+              placeholderTextColor="#808080"
             />
             <TextInput
               style={styles.input}
               value={location}
               onChangeText={setLocation}
               placeholder="Location"
+              placeholderTextColor="#808080"
             />
             <TextInput
               style={styles.input}
               value={zipCode}
               onChangeText={setZipCode}
               placeholder="Zip Code"
+              placeholderTextColor="#808080"
             />
 
             <View style={styles.genderContainer}>
@@ -172,7 +177,7 @@ const ProfileInfo = () => {
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    marginBottom:10,
+    marginBottom: 10,
   },
   container: {
     // padding: 20,

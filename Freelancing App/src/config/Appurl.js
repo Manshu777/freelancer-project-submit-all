@@ -1,3 +1,3 @@
-export const Baseurl = 'http://10.0.2.2:8000/api/v1';
+export const Baseurl = 'https://gursimran.online/api/v1';
 
-export  const Images = 'http://10.0.2.2:8000/storage/';
+export  const Images = 'https://gursimran.online/storage/';

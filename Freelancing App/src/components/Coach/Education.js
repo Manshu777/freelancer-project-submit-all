@@ -36,7 +36,7 @@ const Education = () => {
         if (storedUser) {
           const useimg = JSON.parse(storedUser);
           // console.log(useimg.id)
-          setLoginUserId(useimg.id)
+          setLoginUserId(useimg.id);
         }
       } catch (error) {
         console.error('Error fetching login user data:', error);
@@ -119,7 +119,7 @@ const Education = () => {
   };
 
   const updateUserInfo = async () => {
-    console.log(educationData)
+    console.log(educationData);
     const updatedUserData = {
       education:
         educationData.map(Edu => ({
@@ -152,7 +152,9 @@ const Education = () => {
 
       {/* Display education list */}
       {educationData.length === 0 ? (
-        <Text style={{marginVertical: 10}}>No education entries available.</Text>
+        <Text style={{marginVertical: 10}}>
+          No education entries available.
+        </Text>
       ) : (
         educationData.map((item, index) => (
           <View key={index} style={styles.educationItem}>
@@ -234,6 +236,7 @@ const Education = () => {
                 setCurrentEducation({...currentEducation, degree: text})
               }
               placeholder="Degree"
+              placeholderTextColor="#808080"
             />
             <TextInput
               style={styles.modalInput}
@@ -242,6 +245,7 @@ const Education = () => {
                 setCurrentEducation({...currentEducation, institution: text})
               }
               placeholder="Institution"
+              placeholderTextColor="#808080"
             />
             <TextInput
               style={styles.modalInput}
@@ -251,6 +255,7 @@ const Education = () => {
               }
               placeholder="Year"
               keyboardType="numeric"
+              placeholderTextColor="#808080"
               maxLength={4}
             />
             <TouchableOpacity onPress={saveEducation} style={styles.saveButton}>
