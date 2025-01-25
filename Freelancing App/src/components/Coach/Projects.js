@@ -235,6 +235,7 @@ const Projects = () => {
                 setCurrentProject({...currentProject, name: text})
               }
               placeholder="Project Name"
+              placeholderTextColor="#808080"
             />
             <TextInput
               style={styles.modalInput}
@@ -243,6 +244,7 @@ const Projects = () => {
                 setCurrentProject({...currentProject, description: text})
               }
               placeholder="Project Description"
+              placeholderTextColor="#808080"
             />
             <TextInput
               style={styles.modalInput}
@@ -251,6 +253,7 @@ const Projects = () => {
                 setCurrentProject({...currentProject, link: text})
               }
               placeholder="Link (Image or Website)"
+              placeholderTextColor="#808080"
             />
             <View style={styles.linkTypeContainer}>
               <Text>Select Link Type:</Text>

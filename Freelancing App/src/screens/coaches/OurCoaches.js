@@ -123,7 +123,7 @@ const OurCoaches = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.chessButtonContainer}>
+      {/* <View style={styles.chessButtonContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {[
             'Football',
@@ -145,7 +145,7 @@ const OurCoaches = () => {
             </TouchableOpacity>
           ))}
         </ScrollView>
-      </View>
+      </View> */}
 
       <ScrollView style={{paddingHorizontal: 10}}>
         {Freelancers.map((item, index) => (

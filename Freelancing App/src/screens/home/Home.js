@@ -115,7 +115,7 @@ const Home = () => {
       <ScrollView>
         <Profile userData={userData}/>
         <HeroSection />
-        <DailyGuide />
+        {/* <DailyGuide /> */}
         {/* <GetInTouch /> */}
 
         {/* <Coaches /> */}

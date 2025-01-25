@@ -272,6 +272,7 @@ const AboutUs = () => {
               value={currentSkill.description}
               onChangeText={text => handleInputChange(text, 'description')}
               placeholder="Write about yourself"
+              placeholderTextColor="#808080"
               multiline
             />
             <TouchableOpacity
@@ -302,12 +303,14 @@ const AboutUs = () => {
               value={currentSkill.SkillName}
               onChangeText={text => handleInputChange(text, 'SkillName')}
               placeholder="Skill Name"
+              placeholderTextColor="#808080"
             />
             <TextInput
               style={styles.modalInput}
               value={currentSkill.description}
               onChangeText={text => handleInputChange(text, 'description')}
               placeholder="Skill Description"
+              placeholderTextColor="#808080"
               multiline
             />
             <TouchableOpacity

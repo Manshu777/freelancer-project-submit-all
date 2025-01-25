@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import CoachDp from '../../assets/images/Rishav.jpg';
-
+import {Images} from '../../config/Appurl';
 import Verifyed from '../../assets/images/Verifyed.png';
 import Star from '../../assets/images/Star.png';
 import Exp from '../../assets/images/Exp.png';
@@ -24,19 +24,24 @@ import {Baseurl} from '../../config/Appurl';
 
 const {width, height} = Dimensions.get('window');
 
-const CoachProfile = () => {
+const CoachProfile = ({route}) => {
   const navigation = useNavigation();
   const [projectsData, setProjectsData] = useState([]);
   const [aboutText, setAboutText] = useState('');
   const [skills, setSkills] = useState([]);
   const [educationData, setEducationData] = useState([]);
   const [UserDetails, setUserDetails] = useState([]);
+  const [Loading, setLoading] = useState([]);
+
+  const {coach} = route.params;
+
+  // console.log('this is Freelancer Data', coach);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${Baseurl}/user`);
-        const userData = response.data.find(user => user.id === 12);
+        const userData = response.data.find(user => user.id === coach.id);
         setUserDetails(userData);
         if (userData) {
           setAboutText(userData.about);
@@ -81,13 +86,16 @@ const CoachProfile = () => {
           <View style={styles.CoachCards}>
             <View style={styles.CoachDetails}>
               <View style={styles.CoachImgSection}>
-                <Image source={CoachDp} style={styles.CoachImage} />
+                <Image
+                  source={{uri: `${Images}${coach.image}`}}
+                  style={styles.CoachImage}
+                />
 
-                <View style={styles.Coachrating}>
+                {/* <View style={styles.Coachrating}>
                   <Image source={Star} style={styles.RatingStar} />
 
                   <Text style={styles.RatingNumber}>-0.1</Text>
-                </View>
+                </View> */}
               </View>
 
               <View style={{flex: 0, gap: 10}}>
@@ -100,7 +108,7 @@ const CoachProfile = () => {
                   }}>
                   <Text
                     style={{color: 'black', fontSize: 18, fontWeight: '600'}}>
-                    {UserDetails.Full_Name}
+                    {coach.Full_Name}
                   </Text>
 
                   <Image source={Verifyed} style={{width: 25, height: 25}} />
@@ -187,9 +195,15 @@ const CoachProfile = () => {
           <Text style={{color: '#000', marginBottom: 10, fontSize: 20}}>
             About Me
           </Text>
-          <Text style={{margin:0}}>{aboutText}</Text>
+          <Text style={{margin: 0}}>{aboutText}</Text>
 
-          <Text style={{color: '#000', fontSize: 20, marginTop: 10,marginBottom:10}}>
+          <Text
+            style={{
+              color: '#000',
+              fontSize: 20,
+              marginTop: 10,
+              marginBottom: 10,
+            }}>
             Skills
           </Text>
 

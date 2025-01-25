@@ -48,7 +48,7 @@ const Loading = () => {
   return (
     <View style={styles.container}>
       <Animated.Image
-        source={require('../../assets/images/Logo2.png')}
+        source={require('../../assets/images/mallamlogo.png')}
         style={[
           styles.image,
           {

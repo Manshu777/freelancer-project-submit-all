@@ -21,7 +21,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {postData} from '../../slices/dataSlice';
 import {Baseurl} from '../../config/Appurl';
 
-
 const StudentRegistration = () => {
   const navigation = useNavigation();
 
@@ -90,9 +89,7 @@ const StudentRegistration = () => {
     );
   };
 
-
   const handleRegister = async () => {
-    // Check for missing fields
     if (
       !image ||
       !UserName ||
@@ -106,12 +103,12 @@ const StudentRegistration = () => {
       Alert.alert('Please fill all fields and choose an image');
       return;
     }
-  
+
     const formData = new FormData();
     formData.append('image', {
-      uri: image.uri, 
-      type: image.type || 'image/jpeg', 
-      name: image.fileName || 'profile.jpg',
+      uri: image.uri,
+      type: image.type,
+      name: image.fileName,
     });
     formData.append('User_Name', UserName);
     formData.append('Full_Name', FullName);
@@ -121,43 +118,97 @@ const StudentRegistration = () => {
     formData.append('role', RegAs);
     formData.append('gender', gender);
     formData.append('password', password);
- 
-  
-    const payload = {
-      User_Name:UserName,
-      Full_Name:FullName,
-      Email:email,
-      Contact:Phnumber,
-      Dob: dob.toISOString().split('T')[0],
-      role:RegAs,
-      gender,
-      password,
-    };
-
 
     try {
-      const result = await dispatch(postData(formData)).unwrap();
-      console.log(result,'this is from dataslices');
-      console.log('Registration successful:', result.token);
-      await AsyncStorage.setItem('authToken', result.token);
+      const response = await axios.post(`${Baseurl}/user`, formData, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
-      navigation.navigate('LoginSuccess');
-    } catch (error) {
-      console.error('Registration error:', error);
-    
-      
-      if (error?.response?.data?.errors) {
-        console.error('Validation Errors:', error.response.data.errors);
-        Alert.alert('Error', JSON.stringify(error.response.data.errors));
+      console.log('Response token:', response.data.token);
+      await AsyncStorage.setItem('authToken', response.data.token);
+
+      if (response.status === 200) {
+        alert('Registration Error');
       } else {
-        Alert.alert('Error', error.message || 'An unknown error occurred');
+        // Alert.alert('Registration Error');
+        navigation.navigate('LoginSuccess');
+        setResponseMessage('Error: ' + JSON.stringify(response.data));
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error('Error Response:', error.response.data);
+        const errorMessage =
+          error.response.data.message || 'Please check the form inputs.';
+        Alert.alert('Registration Error', errorMessage);
+      } else {
+        Alert.alert('Network Error', error.message);
       }
     }
-    
   };
-  
 
+  // const handleRegister = async () => {
+  //   // Check for missing fields
+  //   if (
+  //     !image ||
+  //     !UserName ||
+  //     !FullName ||
+  //     !email ||
+  //     !Phnumber ||
+  //     !password ||
+  //     !gender ||
+  //     !termsAccepted
+  //   ) {
+  //     Alert.alert('Please fill all fields and choose an image');
+  //     return;
+  //   }
 
+  //   const formData = new FormData();
+  //   formData.append('image', {
+  //     uri: image.uri,
+  //     type: image.type || 'image/jpeg',
+  //     name: image.fileName || 'profile.jpg',
+  //   });
+  //   formData.append('User_Name', UserName);
+  //   formData.append('Full_Name', FullName);
+  //   formData.append('Email', email);
+  //   formData.append('Contact', Phnumber);
+  //   formData.append('Dob', dob.toISOString().split('T')[0]);
+  //   formData.append('role', RegAs);
+  //   formData.append('gender', gender);
+  //   formData.append('password', password);
+
+  //   const payload = {
+  //     User_Name:UserName,
+  //     Full_Name:FullName,
+  //     Email:email,
+  //     Contact:Phnumber,
+  //     Dob: dob.toISOString().split('T')[0],
+  //     role:RegAs,
+  //     gender,
+  //     password,
+  //   };
+
+  //   try {
+  //     const result = await dispatch(postData(formData)).unwrap();
+  //     console.log(result,'this is from dataslices');
+  //     console.log('Registration successful:', result.token);
+
+  //     navigation.navigate('LoginSuccess');
+  //   } catch (error) {
+  //     console.error('Registration error:', error);
+
+  //     if (error?.response?.data?.errors) {
+  //       console.error('Validation Errors:', error.response.data.errors);
+  //       Alert.alert('Error', JSON.stringify(error.response.data.errors));
+  //     } else {
+  //       Alert.alert('Error', error.message || 'An unknown error occurred');
+  //     }
+  //   }
+
+  // };
 
   const renderRoleOption = (label, value) => (
     <TouchableOpacity

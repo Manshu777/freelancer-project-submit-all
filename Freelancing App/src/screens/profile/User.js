@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {
   FlatList,
   Image,
@@ -21,6 +21,7 @@ import AboutUs from '../../components/Coach/AboutUs';
 import Education from '../../components/Coach/Education';
 import Projects from '../../components/Coach/Projects';
 import {Images} from '../../config/Appurl';
+import {UserContext} from '../../components/context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const {width} = Dimensions.get('window');
 
@@ -32,6 +33,7 @@ if (
 }
 
 const User = () => {
+  const {loginUser} = useContext(UserContext);
   const [userData, setUserData] = useState(null);
   const [selectedTab, setSelectedTab] = useState('Settings');
   const navigation = useNavigation();
@@ -78,7 +80,7 @@ const User = () => {
           </TouchableOpacity>
           <Text style={styles.HeaderText}>Profile</Text>
         </View>
-        <View style={styles.bellIconDes}>
+        {/* <View style={styles.bellIconDes}>
           <TouchableOpacity
             onPress={() => handleNotificatios()}
             style={styles.BellButt}>
@@ -88,7 +90,7 @@ const User = () => {
             />
             <View style={styles.NotiDot}></View>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
 
       <View
@@ -122,7 +124,7 @@ const User = () => {
           }}>
           {userData && userData.image ? (
             <Image
-              source={{uri: `${Images}${userData.image}`}}
+              source={{uri: `${Images}${loginUser.image}`}}
               style={{height: 100, width: 100, borderRadius: 75}}
             />
           ) : (
@@ -141,7 +143,7 @@ const User = () => {
             marginTop: 10,
           }}>
           <Text style={{color: 'black', fontSize: 18, fontWeight: '600'}}>
-            {userData?.Full_Name || 'Unknown User'}
+            {loginUser?.Full_Name || 'Unknown User'}
           </Text>
           <View style={{flex: 0, flexDirection: 'row', alignItems: 'center'}}>
             <Image
@@ -149,7 +151,7 @@ const User = () => {
               style={{width: 20, aspectRatio: 1, marginRight: 5}}
             />
             <Text style={{color: 'black', fontSize: 18, fontWeight: '400'}}>
-              {userData?.Contact || 'No Contact Info'}
+              {loginUser?.Contact || 'No Contact Info'}
             </Text>
           </View>
         </View>
