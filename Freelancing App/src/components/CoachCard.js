@@ -27,7 +27,7 @@ const CoachCard = ({coach}) => {
   
   const {
     Full_Name: name,
-    rating = 'N/A',
+    rating = '4.3',
     role,
     image: coachImage,
     skills = [],
@@ -65,7 +65,7 @@ const CoachCard = ({coach}) => {
   };
 
   return (
-    <TouchableOpacity onPress={handlePress} activeOpacity={0.9}>
+    <TouchableOpacity activeOpacity={0.9}>
       <View style={styles.CoachCards}>
         <View style={styles.CoachDetails}>
           <View style={styles.CoachImgSection}>
@@ -82,7 +82,7 @@ const CoachCard = ({coach}) => {
           <View style={{flex: 0, gap: 10}}>
             <View
               style={{
-                flexDirection: 'row',
+                flexDirection: 'column',
                 justifyContent: 'space-between',
                 width: width * 0.54,
                 marginTop: 5,
@@ -90,29 +90,44 @@ const CoachCard = ({coach}) => {
               <Text style={{color: 'black', fontSize: 18, fontWeight: '600'}}>
                 {coach.Full_Name}
               </Text>
+
+
+              <Text style={{color: 'black', fontSize: 18, fontWeight: '600'}}>
+              {coach.profession}
+              </Text>
+
+
             </View>
 
             <View style={{flex: 0, gap: 7.5}}>
-              <View
+              {/* <View
                 style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
                 <Image source={Education} style={{width: 20, height: 20}} />
-              </View>
+              </View> */}
 
               <View
                 style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
                 <Image source={Exp} style={{width: 20, height: 20}} />
                 <Text
                   style={{color: '#616161', width: width * 0.5, fontSize: 16}}>
-                  {experience}
+                   {coach.experience} Year
                 </Text>
               </View>
               <View
                 style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
                 <Image source={Dollar} style={{width: 20, height: 20}} />
                 <Text
-                  style={{color: '#616161', width: width * 0.5, fontSize: 16}}>
-                  {experience}
+                  style={{color: 'red',fontWeight:'bold' ,width: width * 0.5, fontSize: 16}}>
+                   {coach.rate_per_hour}
                 </Text>
+              </View>
+
+              <View style={{marginTop:15}}>
+                <TouchableOpacity onPress={handlePress}  style={{width:'50%', flexDirection: 'row', alignItems: 'center',justifyContent:'center', marginTop:'50',paddingHorizontal:'20',paddingVertical:'7',backgroundColor:'rgba(126,88,199,1)',borderRadius:'20'}} >
+                  <Text style={{color: '#fff', fontSize: 18, fontWeight: '600',paddingVertical:'7'}}>
+                    View Profile
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
           </View>

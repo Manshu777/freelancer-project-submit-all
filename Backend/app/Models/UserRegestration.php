@@ -18,10 +18,10 @@ class UserRegestration extends Model
         'role',
         'gender',
         'password',
-        'about',         // Freelancer about/description
-        'skills',        // JSON field for skills
-        'projects',      // JSON field for projects
-        'education',      // JSON field for education
+        'about',         
+        'skills',      
+        'projects',
+        'education',      
         'token'
     ];
 

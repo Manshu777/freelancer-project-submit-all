@@ -21,7 +21,7 @@ import Coaches from '../../components/Coaches';
 import ReviewList from '../../components/ReviewList';
 
 import {Baseurl} from '../../config/Appurl';
-
+import Dollar from '../../assets/images/dollar.png';
 const {width, height} = Dimensions.get('window');
 
 const CoachProfile = ({route}) => {
@@ -131,8 +131,9 @@ const CoachProfile = ({route}) => {
                         width: width * 0.4,
                         fontSize: 16,
                       }}>
-                      Tennis
-                    </Text>
+                      {coach.profession}
+                   
+                   </Text>
                   </View>
 
                   <View
@@ -141,15 +142,11 @@ const CoachProfile = ({route}) => {
                       alignItems: 'center',
                       gap: 10,
                     }}>
-                    <Image source={Lang} style={{width: 20, height: 20}} />
-                    <Text
-                      style={{
-                        color: '#616161',
-                        width: width * 0.5,
-                        fontSize: 16,
-                      }}>
-                      Hindi, English
-                    </Text>
+                   <Image source={Dollar} style={{width: 20, height: 20}} />
+                <Text
+                  style={{color: 'red',fontWeight:'bold' ,width: width * 0.5, fontSize: 16}}>
+                   {coach.rate_per_hour}
+                </Text>
                   </View>
 
                   <View
@@ -160,13 +157,9 @@ const CoachProfile = ({route}) => {
                     }}>
                     <Image source={Exp} style={{width: 20, height: 20}} />
                     <Text
-                      style={{
-                        color: '#616161',
-                        width: width * 0.5,
-                        fontSize: 16,
-                      }}>
-                      5 Years
-                    </Text>
+                  style={{color: '#616161', width: width * 0.5, fontSize: 16}}>
+                   {coach.experience} Year
+                </Text>
                   </View>
                 </View>
               </View>

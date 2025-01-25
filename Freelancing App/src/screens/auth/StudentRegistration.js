@@ -30,6 +30,15 @@ const StudentRegistration = () => {
   const [UserName, setUserName] = useState('');
   const [FullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [profession, setprofession] = useState('');
+
+
+  // profession
+
+  const [rate_per_hour, setrate_per_hour] = useState('');
+
+
+
   const [Phnumber, setPhnumber] = useState(60);
   const [dob, setDob] = useState(new Date());
   const [RegAs, setRegAs] = useState('Student');
@@ -90,6 +99,7 @@ const StudentRegistration = () => {
   };
 
   const handleRegister = async () => {
+    setLoading(true)
     if (
       !image ||
       !UserName ||
@@ -100,6 +110,7 @@ const StudentRegistration = () => {
       !gender ||
       !termsAccepted
     ) {
+      setLoading(false)
       Alert.alert('Please fill all fields and choose an image');
       return;
     }
@@ -113,6 +124,11 @@ const StudentRegistration = () => {
     formData.append('User_Name', UserName);
     formData.append('Full_Name', FullName);
     formData.append('Email', email);
+
+    formData.append('rate_per_hour', rate_per_hour);
+    formData.append('profession', profession);
+
+
     formData.append('Contact', Phnumber);
     formData.append('Dob', dob.toISOString().split('T')[0]);
     formData.append('role', RegAs);
@@ -130,6 +146,7 @@ const StudentRegistration = () => {
       console.log('Response token:', response.data.token);
       await AsyncStorage.setItem('authToken', response.data.token);
 
+      setLoading(false)
       if (response.status === 200) {
         alert('Registration Error');
       } else {
@@ -139,11 +156,13 @@ const StudentRegistration = () => {
       }
     } catch (error) {
       if (error.response) {
+        setLoading(false)
         console.error('Error Response:', error.response.data);
         const errorMessage =
           error.response.data.message || 'Please check the form inputs.';
         Alert.alert('Registration Error', errorMessage);
       } else {
+        setLoading(false)
         Alert.alert('Network Error', error.message);
       }
     }
@@ -305,6 +324,24 @@ const StudentRegistration = () => {
             />
           </>
         )}
+        <TextInput
+              style={styles.input}
+              value={rate_per_hour}
+              onChangeText={setrate_per_hour}
+              placeholder="Enter your Rate Per Hour "
+              placeholderTextColor="#808080"
+              keyboardType="rate_per_hour"
+            />
+
+<TextInput
+              style={styles.input}
+              value={profession}
+              onChangeText={setprofession}
+              placeholder="Enter your Profession "
+              placeholderTextColor="#808080"
+              keyboardType="rate_per_hour"
+            />
+
 
         {/* <TextInput
           style={styles.input}
@@ -358,6 +395,8 @@ const StudentRegistration = () => {
               value={password}
               onChangeText={setPassword}
             />
+
+            
             <TouchableOpacity
               onPress={togglePasswordVisibility}
               style={styles.eyeButton}>
